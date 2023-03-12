@@ -1,14 +1,16 @@
 import React, { useEffect } from 'react'
 import { View, Text, StyleSheet, FlatList } from 'react-native'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import PlaceItem from '../components/PlaceItem'
+import * as addressAction from '../store/places.actions'
 
 const PlaceListScreen = ({navigation}) => {
+    const dispatch = useDispatch()
     const places = useSelector(state => state.places.places)
 
     useEffect(() => {
-        console.log(places)
-    }, [places])
+        dispatch(addressAction.loadAddress())
+    }, [])
 
     const renderItem = ({item}) => (
         <PlaceItem 
